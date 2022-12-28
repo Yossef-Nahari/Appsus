@@ -1,7 +1,6 @@
 .notePreview{
     display: grid;
     grid-template-columns: repeat(6,1fr);
-    /* grid-template-rows: minmax(auto,2em) minmax(auto,2em); */
     gap:5px;
 }
 

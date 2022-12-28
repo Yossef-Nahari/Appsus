@@ -24,26 +24,27 @@ export  function NoteFilter({onSetFilter}) {
     }
 
     function onSubmitFilter(ev) {
-        // update father cmp that filters change on submit
         ev.preventDefault()
         onSetFilter(filterByToEdit.txt='')
     }
-    return <section className="note-filter full main-layout">
-        <h2>Search</h2>
-        <form onSubmit={onSubmitFilter}>
-            <label htmlFor="txtFilter"></label>
-            <input type="text"
-                id="txtFilter"
-                name="txt"
-                placeholder="Insert"
-                autoCorrect="off"
-                autoComplete="off"
-                value={filterByToEdit.txt}
-                onChange={handleChange}
-                ref={elInputRef}
-            />
 
-            <button>X</button>
-        </form>
+    return <section className="header">
+        
+        <div className="filter">
+            <form onSubmit={onSubmitFilter}>
+                <label htmlFor="txtFilter"></label>
+                <input type="text"
+                    id="txtFilter"
+                    name="txt"
+                    placeholder="Insert"
+                    autoCorrect="off"
+                    autoComplete="off"
+                    value={filterByToEdit.txt}
+                    onChange={handleChange}
+                    ref={elInputRef}
+                />
+                <button>X</button>
+            </form>
+        </div>
     </section>
 }

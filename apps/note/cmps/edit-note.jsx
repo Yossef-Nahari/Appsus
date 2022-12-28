@@ -44,8 +44,6 @@ export function NoteEdit() {
     }
 
     return <section className="note-edit flex column justify-center align-center">
-        {/* <h2>{noteToEdit.id ? 'Edit this note' : 'Add a new note'}</h2> */}
-
         <form  className="addNote" onSubmit={onSaveNote}>
                 <input type="text"
                     name="title"

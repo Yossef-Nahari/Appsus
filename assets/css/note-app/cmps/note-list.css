@@ -1,9 +1,4 @@
-:root{
-    --size-s:0.5em;
-    --size-m:1em;
-    --size-l:1.5em;
-    --size-xl:2em;
-}
+
 
 .noteList{
     background-color: rgb(142, 142, 207);

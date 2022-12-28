@@ -49,9 +49,10 @@ export function App() {
                     {/* email-compose
                                     a: Has a form with: to, subject and body
                                     b: Use the service to send an email (add email to the list)*/}
-                    <Route path="/note" element={<NoteIndex />} />
-                    <Route path="/note/edit" element={<NoteEdit />} />
-                    <Route element={<NoteEdit />} path="/note/edit/:noteId" />
+                    <Route element={<NoteIndex />} path="/note"  >
+                        {/* <Route path="/note/edit" element={<NoteEdit />} /> */}
+                        <Route element={<NoteEdit />} path="/note/edit/:noteId" />
+                    </Route>
                     {/* note service
                                 -defuale model
                               V  a: demo data (3 nots) only text

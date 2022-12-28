@@ -1,5 +1,6 @@
 const { useState, useEffect } = React
-const { Link } = ReactRouterDOM
+const { Outlet, Link, NavLink } = ReactRouterDOM
+
 
 import { noteService } from "../services/note.service.js"
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js';
@@ -57,11 +58,15 @@ export function NoteIndex() {
             <NoteFilter onSetFilter={onSetFilter}/>
 
 
-            <Link to="/note/edit">Add Note</Link>
+            {/* <Link to="/note/">Add Note</Link> */}
 
             {isLoading && <div>Loading..</div>}
 
             {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+
+            <div className="nested-route">
+                <Outlet />
+            </div>
     </section>
 
 }
