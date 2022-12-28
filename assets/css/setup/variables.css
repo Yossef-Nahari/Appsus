@@ -1,6 +1,10 @@
 :root {
     --main-bg-color: lightblue;
 
-    -clr-header-footer: rgb(206, 206, 235) 
+    -clr-header-footer: rgb(206, 206, 235); 
+
+    --clr-note: rgb(254,239,195);
+    --clr-note-bgc: rgb(215, 215, 215);
+    --clr-grey:rgb(241,243,244);
 
 }
