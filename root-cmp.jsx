@@ -82,7 +82,7 @@ export function App() {
             </main>
 
         <UserMsg />
-        </section>
+        </section> 
     </Router>
 }
 
