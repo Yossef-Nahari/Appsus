@@ -1,11 +1,13 @@
 import { EmailPreview } from './mail-preview.jsx'
 
-export function EmailList(emails) {
+export function EmailList({ emails }) {
 
     return <table className="emails-table-list">
-        {emails.map(email =>
-            <EmailPreview email={email} />
-        )}
+        <tbody>
+            {emails.map(email =>
+                <EmailPreview email={email} key={email.id} />
+            )}
+        </tbody>
     </table>
 
 }

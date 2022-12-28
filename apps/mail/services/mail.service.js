@@ -1,32 +1,8 @@
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/storage.service.js'
+import { asyncStorageService } from '../../../services/async-storage.service.js'
 
 const MAIL_KEY = 'mailDB'
-
-_createEmails()
-
-export const mailService = {
-    query
-}
-
-function query() {
-    return storageService.query(MAIL_KEY)
-        .then(emails => {
-            return emails
-        })
-}
-
-function _createEmails() {
-    let emails = utilService.loadFromStorage(MAIL_KEY)
-    if (!emails || !emails.length) {
-        emails = _createDemoEmails
-        utilService.post(MAIL_KEY, emails)
-    }
-}
-
-function _createDemoEmails() {
-    return demoEmails
-}
 
 const demoEmails = [{
     id: utilService.makeId(),
@@ -65,3 +41,27 @@ const demoEmails = [{
     labels: ['personal']
 }]
 
+_createEmails()
+
+export const mailService = {
+    query
+}
+
+function query() {
+    return asyncStorageService.query(MAIL_KEY)
+        .then(emails => {
+            return emails
+        })
+}
+
+function _createEmails() {
+    let emails = utilService.loadFromStorage(MAIL_KEY)
+    if (!emails || !emails.length) {
+        let emails = _createDemoEmails()
+        storageService.saveToStorage(MAIL_KEY, emails)
+    }
+}
+
+function _createDemoEmails() {
+    return demoEmails
+}

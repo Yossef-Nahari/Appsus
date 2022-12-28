@@ -1,21 +1,19 @@
 
-export function EmailPreview(email) {
+export function EmailPreview({ email }) {
 
-    const date = new Date(email.sentAt)
-
-    return <tr className="emails-table-row">
-        <td><button><span class="material-symbols-outlined">
+    return < tr className="emails-table-row" key={email.id} >
+        <td><button><span className="material-symbols-outlined">
             check_box_outline_blank
         </span></button></td>
-        <td><button><span class="material-symbols-outlined">
+        <td><button><span className="material-symbols-outlined">
             star
         </span></button></td>
-        <td><button><span class="material-symbols-outlined">
+        <td><button><span className="material-symbols-outlined">
             label_important
         </span></button></td>
         <td>{email.from}</td>
         <td>{email.subject}</td>
         <td>{email.body}</td>
-        <td>{date.toString}</td>
-    </tr>
+        <td>{email.sentAt}</td>
+    </tr >
 }

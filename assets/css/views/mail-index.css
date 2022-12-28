@@ -1,0 +1,51 @@
+.mail-index {
+    display: grid;
+    grid-template-rows: 1fr 20fr;
+    height: 100vh;
+}
+
+.mail-header {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    background-color: blue;
+}
+
+.mail-header-left-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.mail-header-center-area {
+    text-align: center;
+    margin: auto;
+}
+
+.mail-header-right-area {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.mail-main {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    background-color: rgb(255, 0, 144);
+}
+
+.mail-main-center-area {
+    display: grid;
+    grid-template-rows: 1fr 20fr;
+    background-color: coral;
+}
+
+.btn-mail {
+    background: none;
+    border: none;
+}
+
+.side-menu {
+    list-style: none;
+}
+
+.mail-img {
+    border-radius: 50%;
+}
