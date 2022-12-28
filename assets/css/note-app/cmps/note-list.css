@@ -19,17 +19,23 @@
   
 .noteList li{
     border: black solid 1px;
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
-    grid-template-rows:  1fr 2em;
-    padding: var(--size-s);
-    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: var(--size-s) var(--size-l);
+    border-radius: 2em;
+    justify-content: space-between;
 }
 
-.notePreview{
-    grid-area:1/1/2/7
+.txtBody{
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    
 }
 
 .optBtnNote{
-    grid-area:2/1/3/7 ;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
 }

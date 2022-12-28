@@ -14,7 +14,7 @@ export function App() {
     return <Router>
         <section className="app">
             <AppHeader />
-            <main>
+            {/* <main> */}
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
@@ -74,9 +74,9 @@ export function App() {
                                         */}
                     {/* note filter */}
                 </Routes>
-            </main>
+            {/* </main> */}
 
-            <UserMsg />
+            {/* <UserMsg /> */}
         </section>
     </Router>
 }

@@ -54,7 +54,6 @@ export function NoteIndex() {
 
 
     return <section className="note-index">
-        <div className="">
             <NoteFilter onSetFilter={onSetFilter}/>
 
 
@@ -63,7 +62,6 @@ export function NoteIndex() {
             {isLoading && <div>Loading..</div>}
 
             {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
-        </div>
     </section>
 
 }

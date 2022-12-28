@@ -1,8 +1,33 @@
-.notePreview textarea{
-    width: 36.0625em;
+form {
+  position: relative;
+  width: 600px;
+  margin: 32px auto 50px auto;
+  background: #fff;
+  padding: 7px;
+  border-radius: 7px;
+  box-shadow: 0 1px 7px rgb(128, 128, 128);
 }
 
-.notePreview textarea .txtBody{
-    height: 5em;
+form input {
+  width: 95%;
+  border: none;
+  padding: 4px 10px;
+  margin-bottom: 20px;
+  outline: none;
+  font-size: 1rem;
+  resize: none;
 }
+
+form textarea{
+    width:95%;
+    border: none;
+    padding: 4px 10px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+    height: 150px;
+  }
+
+
+
 
