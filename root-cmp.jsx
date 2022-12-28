@@ -75,6 +75,7 @@ export function App() {
                     {/* note filter */}
                 </Routes>
             </main>
+
             <UserMsg />
         </section>
     </Router>
