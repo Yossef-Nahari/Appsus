@@ -8,6 +8,7 @@ export function MailIndex() {
 
     const [emails, setEmails] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         loadEmails()
@@ -26,11 +27,11 @@ export function MailIndex() {
         <div className="mail-header full main-layout">
 
             <div className="mail-header-left-area">
-                <button className="btn-mail"><span className="material-symbols-outlined">
+                <button className="btn-mail menu-btn"><span className="material-symbols-outlined">
                     menu
                 </span></button>
-                <button className="btn-mail" type="submit"><img src="../../../assets/img/gmail.png" alt="Submit" /></button>
-                <h1>Gmail</h1>
+                <button className="btn-mail" type="submit"><img className="img-gmail" src="../../../assets/img/gmail.png" alt="Submit" /></button>
+                <h1 className='gmail-caption'>Gmail</h1>
             </div>
 
             <div className="mail-header-center-area">
@@ -38,7 +39,7 @@ export function MailIndex() {
                     <button className="btn-mail"><span className="material-symbols-outlined">
                         search
                     </span></button>
-                    <input className="mail-serach-box" type="text"
+                    <input className="mail-search-box" type="text"
                         id="mail-serach-box"
                         placeholder="Search mail"
                     // value={}
@@ -51,9 +52,9 @@ export function MailIndex() {
                 <button className="btn-mail"><span className="material-symbols-outlined">
                     help
                 </span></button>
-                <span className="material-symbols-outlined">
+                <button className="btn-mail"><span className="material-symbols-outlined">
                     settings
-                </span>
+                </span></button>
                 <button className="btn-mail"><span className="material-symbols-outlined">
                     apps
                 </span></button>
@@ -68,28 +69,28 @@ export function MailIndex() {
                 <button className="btn-mail"><span className="material-symbols-outlined">
                     edit
                 </span></button>
-                <ul className='mail-main-left-area side-menu'>
-                    <li><span className="material-symbols-outlined">
+                <ul className='mail-main-left-area-side-menu side-menu'>
+                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
                         inbox
-                    </span>Inbox</li>
-                    <li><span className="material-symbols-outlined">
+                    </span>{isOpen && 'Inbox'}</li>
+                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
                         send
-                    </span>Sent</li>
-                    <li><span className="material-symbols-outlined">
+                    </span>{isOpen && 'Sent'}</li>
+                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
                         draft
-                    </span>Draft</li>
-                    <li><span className="material-symbols-outlined">
+                    </span>{isOpen && 'Draft'}</li>
+                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
                         star
-                    </span>Stared</li>
-                    <li><span className="material-symbols-outlined">
+                    </span>{isOpen && 'Stared'}</li>
+                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
                         report
-                    </span>Spam</li>
-                    <li><span className="material-symbols-outlined">
+                    </span>{isOpen && 'Spam'}</li>
+                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
                         delete
-                    </span>Trash</li>
-                    <li><span className="material-symbols-outlined">
+                    </span>{isOpen && 'Trash'}</li>
+                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
                         all_inbox
-                    </span>All Mail</li>
+                    </span>{isOpen && 'All Maill'}</li>
                 </ul>
             </div>
 
@@ -108,11 +109,11 @@ export function MailIndex() {
             </div>
 
             <div className="mail-main-right-area">
-                <ul className='mail-main-right-area-side-menu'>
-                    <li><button className="btn-mail" type="submit"><img src="../../../assets/img/google-calendar-icon.svg" alt="Submit" /></button></li>
-                    <li><button className="btn-mail" type="submit"><img src="../../../assets/img/google-keep-icon.svg" alt="Submit" /></button></li>
-                    <li><button className="btn-mail" type="submit"><img src="../../../assets/img/google-tasks-icon.png" alt="Submit" /></button></li>
-                    <li><button className="btn-mail" type="submit"><img src="../../../assets/img/google-contacts-icon.png" alt="Submit" /></button></li>
+                <ul className='mail-main-right-area-side-menu side-menu'>
+                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-calendar-icon.svg" alt="Submit" /></button></li>
+                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-keep-icon.svg" alt="Submit" /></button></li>
+                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-tasks-icon.png" alt="Submit" /></button></li>
+                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-contacts-icon.png" alt="Submit" /></button></li>
                 </ul>
             </div>
 
