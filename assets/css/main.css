@@ -24,8 +24,8 @@
 
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
-/* @import './cmps/mail-list.css';
-@import './cmps/mail-preview.css'; */
+@import './cmps/mail-list.css';
+@import './cmps/mail-preview.css';
 
 
 /* Notes */
@@ -41,5 +41,5 @@
 @import '../css/note-app/cmps/note-preview.css';
 @import '../css/note-app/cmps/note-list.css';
 
-*/
-/* @import './apps/mail/cmps/mail-list.css'; */
+
+@import './apps/mail/cmps/mail-list.css';
