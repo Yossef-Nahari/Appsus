@@ -1,0 +1,11 @@
+.notePreview{
+    background-color: green;
+    
+}
+
+.notePreview h2{
+    grid-area: 1/1/2/6;
+}
+.notePreview h3{
+    grid-area: 1/1/2/6;
+}
