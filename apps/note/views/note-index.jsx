@@ -3,11 +3,11 @@ const { Outlet, Link, NavLink } = ReactRouterDOM
 
 
 import { noteService } from "../services/note.service.js"
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js';
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
-
+import { GoogleHeader } from "../cmps/google-header.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
-import { NoteFilter } from "../cmps/note-filter.jsx"
+
 
 
 
@@ -55,7 +55,8 @@ export function NoteIndex() {
 
 
     return <section className="note-index">
-            <NoteFilter onSetFilter={onSetFilter}/>
+            <GoogleHeader onSetFilter={onSetFilter}/>
+        
 
 
             {/* <Link to="/note/">Add Note</Link> */}
