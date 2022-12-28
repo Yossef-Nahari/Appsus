@@ -7,19 +7,25 @@ import { EmailList } from '../cmps/mail-list.jsx'
 export function MailIndex() {
 
     const [emails, setEmails] = useState([])
+    const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
     const [isLoading, setIsLoading] = useState(true)
     const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         loadEmails()
-    }, [])
+    }, [filterBy])
 
     function loadEmails() {
-        mailService.query()
+        mailService.query(filterBy)
             .then((emails) => {
+                console.log(emails)
                 setEmails(emails)
                 setIsLoading(false)
             })
+    }
+
+    function onSetFilter(filterByFromFilter) {
+        setFilterBy(filterByFromFilter)
     }
 
     return <section className="mail-index full main-layout">
@@ -66,20 +72,20 @@ export function MailIndex() {
         <div className="mail-main full main-layout">
 
             <div className="mail-main-left-area">
-                <button className="btn-mail"><span className="material-symbols-outlined">
+                <button className="btn-mail btn-edit-google"><span className="material-symbols-outlined">
                     edit
                 </span></button>
                 <ul className='mail-main-left-area-side-menu side-menu'>
-                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter({ ...filterBy, isStared: '', to: 'Jhon@gmail.com', from: 'Jhon@gmail.com' })} className="li-mail-left-side"><span className="material-symbols-outlined">
                         inbox
                     </span>{isOpen && 'Inbox'}</li>
-                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter({ ...filterBy, isStared: '', to: '', from: 'Jhon@gmail.com' })} className="li-mail-left-side"><span className="material-symbols-outlined">
                         send
                     </span>{isOpen && 'Sent'}</li>
                     <li className="li-mail-left-side"><span className="material-symbols-outlined">
                         draft
                     </span>{isOpen && 'Draft'}</li>
-                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter({ ...filterBy, isStared: true })} className="li-mail-left-side"><span className="material-symbols-outlined">
                         star
                     </span>{isOpen && 'Stared'}</li>
                     <li className="li-mail-left-side"><span className="material-symbols-outlined">
@@ -119,5 +125,5 @@ export function MailIndex() {
 
         </div>
 
-    </section>
+    </section >
 }

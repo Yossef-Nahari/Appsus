@@ -1,7 +1,7 @@
 .mail-index {
     display: grid;
     grid-template-rows: 1fr 19fr;
-    height: 100vh;
+    height: 90vh;
 }
 
 .mail-header {
@@ -15,13 +15,18 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+.gmail-caption {
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
 .mail-main-left-area-side-menu {
     padding-inline-start: 22px;
 }
 
 .menu-btn {
     text-align: end;
-    margin-right: 5px;
+    margin-right: 19px;
 }
 
 .img-gmail {
@@ -74,6 +79,14 @@
     padding-inline-start: 0;
 }
 
+.btn-mail.btn-edit-google {
+    background-color: #c2e7ff;
+    border-radius: 15px;
+    height: 35px;
+    width: 35px;
+    margin: auto;
+}
+
 .li-mail-left-side {
     padding-bottom: 10px;
 }
@@ -115,4 +128,8 @@
     height: 28px;
     width: 28px;
     margin: auto 0;
+}
+
+.right-google-ul:hover {
+    background-color: rgba(0, 0, 0, 0.197);
 }
