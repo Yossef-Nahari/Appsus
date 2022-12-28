@@ -1,11 +1,17 @@
 .notePreview{
-    background-color: green;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: minmax(auto,2em) minmax(auto,2em);
+    gap:5px
     
 }
 
-.notePreview h2{
-    grid-area: 1/1/2/6;
+.txtTitle{
+    grid-area: 1/1/2/-1;
+    
+   
 }
-.notePreview h3{
-    grid-area: 2/1/3/6;
+.txtBody{
+    grid-area: 2/1/3/-1;
 }
+

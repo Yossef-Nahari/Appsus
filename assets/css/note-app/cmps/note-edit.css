@@ -1,0 +1,8 @@
+.notePreview textarea{
+    width: 36.0625em;
+}
+
+.notePreview textarea .txtBody{
+    height: 5em;
+}
+
