@@ -1,4 +1,4 @@
-import { storageService } from "../../../services/async-storage.service.js"
+import { asyncStorageService as storageService} from "../../../services/async-storage.service.js"
 import { utilService } from "../../../services/util.service.js"
 
 
@@ -19,9 +19,9 @@ export const noteService={
 
 function query(filterBy = getDefaultFilter()) {
     return storageService.query(NOTE_KEY)
-        .then(notes => {
-            if (filterBy.txt) {
-                const regex = new RegExp(filterBy.txt, 'i')
+    .then(notes => {
+        if (filterBy.txt) {
+            const regex = new RegExp(filterBy.txt, 'i')
                 // search by title and txt
                 notes = notes.filter(note => regex.test(note.info.txt) || 
                                             regex.test(note.info.title))

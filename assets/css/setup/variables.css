@@ -7,4 +7,11 @@
     --clr-note-bgc: rgb(215, 215, 215);
     --clr-grey:rgb(241,243,244);
 
+
+    --size-s:0.5em;
+    --size-m:1em;
+    --size-l:1.5em;
+    --size-xl:2em;
+
+
 }

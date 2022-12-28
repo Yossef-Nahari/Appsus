@@ -13,13 +13,13 @@ import { UserMsg } from './cmps/user-msg.jsx'
 export function App() {
     return <Router>
         <section className="app">
-            <AppHeader />
+            {/* <AppHeader /> */}
             {/* <main> */}
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/mail" element={<MailIndex />} />
-                {/* email service
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/mail" element={<MailIndex />} />
+                    {/* email service
                             a: defult model (empty)
                             b: demo data (3 emails) start with single caritira
                             c: basic user (hard code)
@@ -49,10 +49,11 @@ export function App() {
                 {/* email-compose
                                     a: Has a form with: to, subject and body
                                     b: Use the service to send an email (add email to the list)*/}
-                <Route path="/note" element={<NoteIndex />} />
-                <Route path="/note/edit" element={<NoteEdit />} />
-                <Route element={<NoteEdit />} path="/note/edit/:noteId" />
-                {/* note service
+                    <Route element={<NoteIndex />} path="/note"  >
+                        {/* <Route path="/note/edit" element={<NoteEdit />} /> */}
+                        <Route element={<NoteEdit />} path="/note/edit/:noteId" />
+                    </Route>
+                    {/* note service
                                 -defuale model
                               V  a: demo data (3 nots) only text
                                 b: add note
@@ -72,11 +73,11 @@ export function App() {
                                         -pin
                                         -send to email
                                         */}
-                {/* note filter */}
-            </Routes>
+                    {/* note filter */}
+                </Routes>
             {/* </main> */}
 
-            <UserMsg />
+            {/* <UserMsg /> */}
         </section>
     </Router>
 }

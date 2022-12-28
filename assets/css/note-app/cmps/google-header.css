@@ -1,0 +1,143 @@
+/* HOVER EFEECTS */
+
+.material-icons-outlined {
+    padding: 10px;
+}
+
+.hover:hover {
+    background: #f1f3f4;
+    color: black;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.tooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.875em;
+    height: 2.875em;
+    border: 1px;
+}
+
+.tooltip:hover{
+    background-color:#f1f3f4 ;
+    border-radius: 50%;
+}
+
+.tooltip-text {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    font-size: 0.78rem;
+    background-color: #323232;
+    color: white;
+    opacity: 0.8;
+    padding: 5px;
+    white-space: nowrap;
+    border-radius: 5px;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+/* NAVBAR STYLES */
+
+nav {
+    display: flex;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap:5px;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    border-bottom: 1px solid #dadce0;
+    /* padding: 8px; */
+    margin: 0 10px;
+    color: #5f6368;
+
+}
+
+.log-area {
+    margin-inline-end: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.menuBar{
+    padding: 0.25em;
+}
+
+.menuBar:hover{
+    background-color:#f1f3f4 ;
+    border-radius: 50%;
+}
+.log-area img {
+    width: 40px;
+    height: 40px;
+    padding-inline-end: 0.25em;
+}
+
+.logo-text {
+    font-size: 1.2rem;
+}
+
+
+
+.search-area {
+    margin-left: var(--size-m);
+    grid-area: 1/2/2/3;
+    background: #f1f3f4;
+    width: 692px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.closeOps{
+    position: relative;
+    right: var(--size-s);
+}
+
+.search-area input {
+    border: none;
+    background: #f1f3f4;
+    height: 95%;
+    width: 82%;
+    min-width: 200px;
+    font-size: 1rem;
+    margin-left: 10px;
+    border-radius: 2em;
+    align-items: center;
+}
+
+input:focus {
+    outline: none;
+}
+
+.search-area span {
+    margin-left: 10px;
+}
+
+.settings-area {
+    display: flex;
+}
+
+
+.profile-actions-area {
+    justify-content: right;
+    grid-area: 1/4/2/5;
+    display: flex;
+}
+
+.profile{
+    /* width: var(--size-l); */
+    /* height: var(--size-l); */
+    /* padding: var(--size-s); */
+    font-size: var(--size-m);
+}
+
+/* MAIN SECTION STYLES */
