@@ -4,7 +4,7 @@ const Router = ReactRouterDOM.HashRouter
 import { AppHeader } from "./cmps/app-header.jsx"
 import { About } from "./views/about.jsx"
 import { Home } from "./views/home.jsx"
-import { MailIndex } from "./apps/mail/views/mail-index.jsx"
+// import { MailIndex } from "./apps/mail/views/mail-index.jsx"
 import { NoteIndex } from "./apps/note/views/note-index.jsx"
 import { NoteEdit } from "./apps/note/cmps/edit-note.jsx"
 
@@ -14,11 +14,11 @@ export function App() {
     return <Router>
         <section className="app">
             <AppHeader />
-            <main>
+            {/* <main> */}
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
-                    <Route path="/mail" element={<MailIndex />} />
+                    {/* <Route path="/mail" element={<MailIndex />} /> */}
                     {/* email service
                             a: defult model (empty)
                             b: demo data (3 emails) start with single caritira
@@ -74,9 +74,9 @@ export function App() {
                                         */}
                     {/* note filter */}
                 </Routes>
-            </main>
+            {/* </main> */}
 
-            <UserMsg />
+            {/* <UserMsg /> */}
         </section>
     </Router>
 }

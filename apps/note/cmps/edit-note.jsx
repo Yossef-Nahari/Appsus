@@ -43,28 +43,27 @@ export function NoteEdit() {
         })
     }
 
-    return <section className="note-edit">
-        <h2>{noteToEdit.id ? 'Edit this note' : 'Add a new note'}</h2>
+    return <section className="note-edit flex column justify-center align-center">
+        {/* <h2>{noteToEdit.id ? 'Edit this note' : 'Add a new note'}</h2> */}
 
-        <form onSubmit={onSaveNote}>
-            <label htmlFor="title">title : </label>
-            <input type="text"
-                name="title"
-                id="title"
-                placeholder="Enter title txt"
-                value={noteToEdit.info.title}
-                onChange={handleChange}
-            />
-            <label htmlFor="noteTxt">Note text : </label>
-            <input type="text"
-                name="txt"
-                id="noteTxt"
-                placeholder="Enter note txt"
-                value={noteToEdit.info.txt}
-                onChange={handleChange}
-            />
-           
-            <div>
+        <form  className="noteList" onSubmit={onSaveNote}>
+            <div className="notePreview">
+                <input type="text"
+                    name="title"
+                    className="txtTitle"
+                    placeholder="Enter title txt"
+                    value={noteToEdit.info.title}
+                    onChange={handleChange}
+                />
+                <input type="text"
+                    name="txt"
+                    className="txtBody"
+                    placeholder="Enter note txt"
+                    value={noteToEdit.info.txt}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="optBtnNote">
                 <button>{noteToEdit.id ? 'Save' : 'Add'}</button>
                 <Link to="/note">Cancel</Link>
             </div>
