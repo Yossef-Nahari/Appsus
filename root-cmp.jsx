@@ -17,38 +17,37 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<MailIndex />} />
-                    {/* email service 
-                    a: defult model (empty)
-                    b: demo data (3 emails) start with single caritira 
-                    c: basic user (hard code)
-                    d: create query funcation with caritira (filter)
-                    e: curdel
+                {/* email service 
+                    a: default email model pattern
+                    b: create demo data (3 emails) start with single caritira 
+                    c: basic user pattern (hard code)
+                    d: create query funcation with filter (caritira)
                     */}
-                    {/* email app (index) 
+                {/* email app (index) 
                         a: load email data*
                         b: filter by filterby */}
-                        {/* email-list *
+                {/* email-list *
                         a: Renders a list of <email-preview> pass down an email <prop></prop>*/}
-                            {/* email privew *
+                {/* email privew *
                             a: Present an email preview
                             b:  Renders the subject (with text size limit)
                             c:  Gives visual indication for read/unread 
                             d:  Support hover state */}
-                                {/* email details 
+                {/* email details 
                                 a: Routable component (page)
                                 b: Show the entire email
                                 c: Allow deleting an email (using the service)
                                 d: Allow navigating back to list*/}
-                        {/* email-filter 
+                {/* email-filter 
                             a: Allow filtering
                             b: Start with Search and Read / Unread*/}
-                        {/* email-folder-list
+                {/* email-folder-list
                             a: Allow filtering by different folders: inbox / sent / trash/ draft */}
-                        {/* email-compose 
+                {/* email-compose 
                             a: Has a form with: to, subject and body
                             b: Use the service to send an email (add email to the list)*/}
                 <Route path="/note" element={<NoteIndex />} />
-                    {/* note service
+                {/* note service
                         -defuale model
                         a: demo data (3 nots) only text
                         b: add note
@@ -56,9 +55,9 @@ export function App() {
                         d: edit note
                         e: defualt filter
                          */}
-                    {/* note index */}
-                        {/* note list */}
-                            {/* note preview 
+                {/* note index */}
+                {/* note list */}
+                {/* note preview 
                                 a: show note
                                 b: edit note:
                                 --*** text 
@@ -69,8 +68,8 @@ export function App() {
                                 -send to email
                                 */}
 
-                        {/* note filter */}
-                        
+                {/* note filter */}
+
             </Routes>
         </section>
     </Router>

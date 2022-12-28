@@ -1,5 +1,11 @@
-export function MailList() {
+import { EmailPreview } from './mail-preview.jsx'
 
-    return <div>Mail list</div>
+export function EmailList(emails) {
+
+    return <table className="emails-table-list">
+        {emails.map(email =>
+            <EmailPreview email={email} />
+        )}
+    </table>
 
 }
