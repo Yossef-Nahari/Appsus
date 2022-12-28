@@ -52,9 +52,9 @@ export function MailIndex() {
                 <button className="btn-mail"><span className="material-symbols-outlined">
                     help
                 </span></button>
-                <span className="material-symbols-outlined">
+                <button className="btn-mail"><span className="material-symbols-outlined">
                     settings
-                </span>
+                </span></button>
                 <button className="btn-mail"><span className="material-symbols-outlined">
                     apps
                 </span></button>
@@ -110,10 +110,10 @@ export function MailIndex() {
 
             <div className="mail-main-right-area">
                 <ul className='mail-main-right-area-side-menu side-menu'>
-                    <li><button className="btn-mail" type="submit"><img src="../../../assets/img/google-calendar-icon.svg" alt="Submit" /></button></li>
-                    <li><button className="btn-mail" type="submit"><img src="../../../assets/img/google-keep-icon.svg" alt="Submit" /></button></li>
-                    <li><button className="btn-mail" type="submit"><img src="../../../assets/img/google-tasks-icon.png" alt="Submit" /></button></li>
-                    <li><button className="btn-mail" type="submit"><img src="../../../assets/img/google-contacts-icon.png" alt="Submit" /></button></li>
+                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-calendar-icon.svg" alt="Submit" /></button></li>
+                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-keep-icon.svg" alt="Submit" /></button></li>
+                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-tasks-icon.png" alt="Submit" /></button></li>
+                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-contacts-icon.png" alt="Submit" /></button></li>
                 </ul>
             </div>
 

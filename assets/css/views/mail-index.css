@@ -51,18 +51,19 @@
     height: 80%;
     border: none;
     border-radius: 5px;
-    font-size: 1.1em;
+    font-size: 1em;
     padding-left: 20px;
 }
 
 .mail-header-right-area {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-items: left;
 }
 
 .mail-main {
     display: grid;
-    grid-template-columns: 1fr 20fr 1fr;
+    grid-template-columns: 1fr 28fr 1fr;
     background-color: #f6f8fc;
 }
 
@@ -86,6 +87,18 @@
 
 .mail-main-right-area {
     background-color: #f6f8fc;
+    margin: 0 auto;
+}
+
+.mail-main-right-area-side-menu {
+    padding-inline-start: 0;
+    margin-bottom: 50px;
+}
+
+.btn-li-right-mail {
+    height: 25px;
+    width: 25px;
+    margin: 20px 0;
 }
 
 .btn-mail {
@@ -99,4 +112,7 @@
 
 .mail-img {
     border-radius: 50%;
+    height: 28px;
+    width: 28px;
+    margin: auto 0;
 }
