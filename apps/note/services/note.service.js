@@ -41,13 +41,14 @@ function remove(noteId) {
 }
 
 function save(note) {
-    console.log('note in save:', note)
     if (note.id) {
         return storageService.put(NOTE_KEY, note)
     } else {
         return storageService.post(NOTE_KEY, note)
     }
+
 }
+
 
 function getEmptyNote(type='', isPinnd=true, info={txt: '', title: ''}, style={bgc:'', font:'', fontSize:''}) {
     return { type, isPinnd,info, style}

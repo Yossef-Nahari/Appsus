@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { Outlet, Link, NavLink } = ReactRouterDOM
+const { Outlet } = ReactRouterDOM
 
 
 import { noteService } from "../services/note.service.js"
@@ -8,19 +8,13 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { GoogleHeader } from "../cmps/google-header.jsx"
 import { AddNote } from "../cmps/add-note.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
-
-
-
-
+// import { NoteEdit } from "../cmps/edit-note.jsx"
 
 export function NoteIndex() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [notes, setNotes] = useState([])
-
-
-
 
     useEffect(() => {
         loadNots()
@@ -53,36 +47,30 @@ export function NoteIndex() {
             })
     }
 
-    function onSaveNote(newNote, noteId='') {
-        if (newNote.info.txt ==="" && newNote.info.title ==="" ) return
+    function onSaveNote(newNote, justCreated = true) {
+        if (newNote.info.txt === "" && newNote.info.title === "" && justCreated) return
         noteService.save(newNote).then((note) => {
-            setNotes(prevNots=> [...prevNots, note])
+            if (newNote.id) {
+                const updatednotes = notes.filter(note => note.id !== newNote.id)
+                setNotes([...updatednotes, note])
+            } else { setNotes(prevNots => [...prevNots, note]) }
         })
     }
 
 
 
     return <section className="note-index">
-            <GoogleHeader onSetFilter={onSetFilter}/>
+        <GoogleHeader onSetFilter={onSetFilter} />
 
-            <main className=".main-layout">
+        <main className=".main-layout">
+            <AddNote onSaveNote={onSaveNote} />
+            {isLoading && <div>Loading..</div>}
+            {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+            <div className="nested-route">
+                <Outlet context={onSaveNote} />
+            </div>
 
-                <AddNote onSaveNote={onSaveNote}/>
-
-            
-
-
-                {/* <Link to="/note/">Add Note</Link> */}
-
-                {isLoading && <div>Loading..</div>}
-
-                {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
-
-                <div className="nested-route">
-                    <Outlet />
-                </div>
-
-            </main>
+        </main>
     </section>
 
 }

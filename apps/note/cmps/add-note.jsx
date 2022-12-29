@@ -1,5 +1,4 @@
-const { useState, useEffect, useCallback, useRef} = React
-const { useNavigate, useParams, Link } = ReactRouterDOM
+const { useState, useEffect, useRef} = React
 
 import { noteService } from "../services/note.service.js"
 import { eventBusService, showSuccessMsg } from "../services/event-bus.service.js"
@@ -26,13 +25,10 @@ export function AddNote({onSaveNote}) {
         useEffect(() => {
           function handleClickOutside(event) {
               if (ref.current && !ref.current.contains(event.target)) {
-                console.log('clickoutside:')
                 setIsActive(false)
 
             }
           }
-
-          
           document.addEventListener("mousedown", handleClickOutside);
           return () => {
             document.removeEventListener("mousedown", handleClickOutside)

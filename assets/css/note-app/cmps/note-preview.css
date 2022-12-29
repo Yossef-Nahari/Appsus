@@ -1,14 +1,71 @@
-.notePreview{
-    display: grid;
-    grid-template-columns: repeat(6,1fr);
-    gap:5px;
+.noteList li{
+    border: black solid 1px;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--size-s);
+    align-content: center;
+    justify-content: space-between;
+    /* height: 100%; */
+}
+
+.notePresent{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    /* height: 100%; */
+    justify-content: space-between;
+}
+
+.noteTxts{
+    font-size: 1em;
+    width: 200px;
+    padding: 0.75em 1em;
+    box-sizing: border-box;
 }
 
 .txtTitle{
-    grid-area: 1/1/2/-1;
+    min-height: 1.5em;
+    
 }
+
+
 .txtBody{
-    grid-area: 2/1/3/-1;
+    min-height: 2.5em;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;   
+}
+
+
+
+.optBtnNote{
+    display: flex;
+    margin: 0 0.5em;
+   
+}
+.optBtnNote>*{
+    font-size: 1.2em;
+    font-weight: 550;
+    padding-right: 5px;
+    height: 34px;
+    width: 34px;
+}
+
+.optBtnNote{ 
+    opacity: 0;
+    transition: opacity 0.4s;
 
 }
+
+.notePresent:hover .optBtnNote{
+    opacity: 1;
+}
+
+
+
+
+
+
 

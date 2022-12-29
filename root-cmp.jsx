@@ -51,7 +51,7 @@ export function App() {
                                     b: Use the service to send an email (add email to the list)*/}
                 <Route element={<NoteIndex />} path="/note"  >
                     {/* <Route path="/note/edit" element={<NoteEdit />} /> */}
-                    <Route element={<NoteEdit />} path="/note/edit/:noteId" />
+                    <Route element={<NoteEdit />} path="/note/:noteId"  />
                 </Route>
                 {/* note service
                                 -defuale model
