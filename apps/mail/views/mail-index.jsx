@@ -3,6 +3,9 @@ const { useState, useEffect } = React
 import { mailService } from '../services/mail.service.js'
 
 import { EmailList } from '../cmps/mail-list.jsx'
+import { EmailCompose } from '../cmps/mail-compose.jsx'
+import { EmailOpen } from '../cmps/mail-open.jsx'
+
 
 export function MailIndex() {
 
@@ -10,8 +13,13 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [isOpen, setIsOpen] = useState(false)
+    const [searchList, setSearchList] = useState([])
+    const [isNewEmail, setIsNewEmail] = useState(false)
+    const [isEmailOpen, setIsEmailOpen] = useState(false)
+    const [mailToOpen, setMailToOpen] = useState('')
 
     useEffect(() => {
+        console.log('render')
         loadEmails()
     }, [filterBy])
 
@@ -23,7 +31,7 @@ export function MailIndex() {
             })
     }
 
-    function onSetFilter(filterBy) {
+    function onSetFilter(filterBy, isTxt) {
         let criteria = {
             status: '',
             txt: '',
@@ -35,7 +43,22 @@ export function MailIndex() {
             criteria = { ...criteria, status: filterBy }
         }
         if (filterBy === 'isStared') criteria = { ...criteria, isStared: true }
+        if (isTxt) criteria = { ...criteria, txt: filterBy }
         setFilterBy({ criteria })
+    }
+
+    function onSearchEmail(ev) {
+        console.log(ev)
+        const searchValue = ev.target.value
+        if (ev.key === 'Enter') {
+            setSearchList([...searchList, searchValue])
+            onSetFilter(searchValue, true)
+            ev.target.value = ''
+        }
+    }
+
+    function dataListPreview() {
+        return searchList.map((searchKey) => <option key={searchKey}>{searchKey}</option>)
     }
 
     return <section className="mail-index full main-layout">
@@ -56,11 +79,13 @@ export function MailIndex() {
                         search
                     </span></button>
                     <input className="mail-search-box" type="text"
-                        id="mail-serach-box"
+                        list="mail-serach-box"
                         placeholder="Search mail"
-                    // value={}
-                    // onChange={onSearchEmail}
+                        onKeyUp={onSearchEmail}
                     />
+                    <datalist id='mail-serach-box'>
+                        {searchList && dataListPreview()}
+                    </datalist>
                 </form>
             </div>
 
@@ -82,29 +107,29 @@ export function MailIndex() {
         <div className="mail-main full main-layout">
 
             <div className="mail-main-left-area">
-                <button className="btn-mail btn-edit-google"><span className="material-symbols-outlined">
+                <button onClick={() => setIsNewEmail(true)} className="btn-mail btn-edit-google" title='New email'><span className="material-symbols-outlined">
                     edit
                 </span></button>
                 <ul className='mail-main-left-area-side-menu side-menu'>
-                    <li onClick={() => onSetFilter('inbox')} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => { onSetFilter('inbox'), setIsEmailOpen(false) }} className="li-mail-left-side" title='Inbox'><span className="material-symbols-outlined">
                         inbox
                     </span>{isOpen && 'Inbox'}</li>
-                    <li onClick={() => onSetFilter('sent')} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => { onSetFilter('sent'), setIsEmailOpen(false) }} className="li-mail-left-side" title='Sent'><span className="material-symbols-outlined">
                         send
                     </span>{isOpen && 'Sent'}</li>
-                    <li onClick={() => onSetFilter('draft')} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => { onSetFilter('draft'), setIsEmailOpen(false) }} className="li-mail-left-side" title='Draft'><span className="material-symbols-outlined">
                         draft
                     </span>{isOpen && 'Draft'}</li>
-                    <li onClick={() => onSetFilter('isStared')} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => { onSetFilter('isStared'), setIsEmailOpen(false) }} className="li-mail-left-side" title='Stared'><span className="material-symbols-outlined">
                         star
                     </span>{isOpen && 'Stared'}</li>
-                    <li onClick={() => onSetFilter('spam')} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => { onSetFilter('spam'), setIsEmailOpen(false) }} className="li-mail-left-side" title='Spam'><span className="material-symbols-outlined">
                         report
                     </span>{isOpen && 'Spam'}</li>
-                    <li onClick={() => onSetFilter('trash')} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => { onSetFilter('trash'), setIsEmailOpen(false) }} className="li-mail-left-side" title='Trash'><span className="material-symbols-outlined">
                         delete
                     </span>{isOpen && 'trash'}</li>
-                    <li onClick={() => onSetFilter('')} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => { onSetFilter(''), setIsEmailOpen(false) }} className="li-mail-left-side" title='All emails'><span className="material-symbols-outlined">
                         all_inbox
                     </span>{isOpen && 'All Maill'}</li>
                 </ul>
@@ -117,7 +142,8 @@ export function MailIndex() {
                 </div>
 
                 <div className="mail-main-emails-table">
-                    {!isLoading && <EmailList emails={emails} />}
+                    {!isLoading && !isEmailOpen && <EmailList emails={emails} setIsEmailOpen={setIsEmailOpen} setMailToOpen={setMailToOpen} loadEmails={loadEmails} />}
+                    {isEmailOpen && <EmailOpen mailToOpen={mailToOpen} />}
                     {isLoading && <div>Loading..</div>}
                     {!emails.length && <div>No emails to show..</div>}
                 </div>
@@ -126,12 +152,14 @@ export function MailIndex() {
 
             <div className="mail-main-right-area">
                 <ul className='mail-main-right-area-side-menu side-menu'>
-                    <li onClick={() => location.href = "https://calendar.google.com/calendar/u/0/r?pli=1"} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-calendar-icon.svg" alt="Submit" /></button></li>
-                    <li onClick={() => location.href = ""} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-keep-icon.svg" alt="Submit" /></button></li>
-                    <li onClick={() => location.href = "https://tasksboard.com/"} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-tasks-icon.png" alt="Submit" /></button></li>
-                    <li onClick={() => location.href = "https://contacts.google.com/"} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-contacts-icon.png" alt="Submit" /></button></li>
+                    <li onClick={() => location.href = "https://calendar.google.com/calendar/u/0/r?pli=1"} className='right-google-ul' title='Google calendar'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-calendar-icon.svg" alt="Submit" /></button></li>
+                    <li onClick={() => location.href = ""} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit" title='Google keep'><img src="../../../assets/img/google-keep-icon.svg" alt="Submit" /></button></li>
+                    <li onClick={() => location.href = "https://tasksboard.com/"} className='right-google-ul' title='Google tasks'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-tasks-icon.png" alt="Submit" /></button></li>
+                    <li onClick={() => location.href = "https://contacts.google.com/"} className='right-google-ul' title='Google contacts'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-contacts-icon.png" alt="Submit" /></button></li>
                 </ul>
             </div>
+
+            {isNewEmail && <EmailCompose SetIsNewEmail={setIsNewEmail} loadEmails={loadEmails} />}
 
         </div>
 

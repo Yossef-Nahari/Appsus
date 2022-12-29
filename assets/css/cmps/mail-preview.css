@@ -26,3 +26,7 @@
     box-shadow: 0 1.5px 0 0 rgba(129, 129, 129, 0.248);
     cursor: pointer;
 }
+
+.material-symbols-outlined.stared-btn {
+    color: rgba(237, 146, 35, 0.638);
+}

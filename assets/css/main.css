@@ -8,11 +8,11 @@
 
 @import './basics/base.css';
 @import './basics/helpers.css';
-@import './basics/layout.css';
+/* @import './basics/layout.css'; */
 
 /* Views */
-/* @import './views/home.css'; */
-/* @import './views/home.css'; */
+@import './views/home.css';
+@import './views/home.css';
 @import './views/home.css';
 @import './views/mail-index.css';
 
@@ -21,31 +21,22 @@
 /* @import './apps/mail/views/mail-app.css'; */
 
 /* Cmps */
-
+/*  */
 @import './cmps/user-msg.css';
 @import './cmps/app-header.css';
 @import './cmps/mail-list.css';
 @import './cmps/mail-preview.css';
-
-
-/* Notes */
-/* Notes */
-/* Notes */
-/* Notes */
-
+@import './cmps/mail-compose.css';
+@import './cmps/mail-open.css';
 
 /* Views */
-/* @import '../css/note-app/view/note-index.css';
+@import '../css/note-app/view/note-index.css';
 
 /* Cmps */
 @import '../css/note-app/cmps/note-Page.css';
 @import '../css//note-app/cmps/google-header.css';
 @import '../css//note-app/cmps/add-note.css';
 @import '../css/note-app/cmps/noteFilter.css';
-/* @import '../css/note-app/cmps/note-edit.css'; */
+@import '../css/note-app/cmps/note-edit.css';
 @import '../css/note-app/cmps/note-preview.css';
 @import '../css/note-app/cmps/note-list.css';
-
-
-
-/* @import './apps/mail/cmps/mail-list.css'; */
