@@ -58,8 +58,8 @@ export function MailIndex() {
                     <input className="mail-search-box" type="text"
                         id="mail-serach-box"
                         placeholder="Search mail"
-                        // value={}
-                        onChange={onSearchEmail}
+                    // value={}
+                    // onChange={onSearchEmail}
                     />
                 </form>
             </div>
