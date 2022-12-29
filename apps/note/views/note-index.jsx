@@ -55,7 +55,6 @@ export function NoteIndex() {
 
     function onSaveNote(newNote, noteId='') {
         if (newNote.info.txt ==="" && newNote.info.title ==="" ) return
-        console.log('newNote:', newNote)
         noteService.save(newNote).then((note) => {
             setNotes(prevNots=> [...prevNots, note])
         })
