@@ -7,7 +7,7 @@ import { EmailList } from '../cmps/mail-list.jsx'
 export function MailIndex() {
 
     const [emails, setEmails] = useState([])
-    const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [filterBy, setFilterBy] = useState()
     const [isLoading, setIsLoading] = useState(true)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -18,14 +18,24 @@ export function MailIndex() {
     function loadEmails() {
         mailService.query(filterBy)
             .then((emails) => {
-                console.log(emails)
                 setEmails(emails)
                 setIsLoading(false)
             })
     }
 
-    function onSetFilter(filterByFromFilter) {
-        setFilterBy(filterByFromFilter)
+    function onSetFilter(filterBy) {
+        let criteria = {
+            status: '',
+            txt: '',
+            isRead: '',
+            isStared: '',
+            lables: []
+        }
+        if (filterBy === 'inbox' || filterBy === 'sent' || filterBy === 'trash' || filterBy === 'draft' || filterBy === 'spam') {
+            criteria = { ...criteria, status: filterBy }
+        }
+        if (filterBy === 'isStared') criteria = { ...criteria, isStared: true }
+        setFilterBy({ criteria })
     }
 
     return <section className="mail-index full main-layout">
@@ -49,7 +59,7 @@ export function MailIndex() {
                         id="mail-serach-box"
                         placeholder="Search mail"
                     // value={}
-                    // onChange={handlePriceChange} 
+                    // onChange={onSearchEmail}
                     />
                 </form>
             </div>
@@ -76,25 +86,25 @@ export function MailIndex() {
                     edit
                 </span></button>
                 <ul className='mail-main-left-area-side-menu side-menu'>
-                    <li onClick={() => onSetFilter({ ...filterBy, isStared: '', to: 'Jhon@gmail.com', from: 'Jhon@gmail.com' })} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter('inbox')} className="li-mail-left-side"><span className="material-symbols-outlined">
                         inbox
                     </span>{isOpen && 'Inbox'}</li>
-                    <li onClick={() => onSetFilter({ ...filterBy, isStared: '', to: '', from: 'Jhon@gmail.com' })} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter('sent')} className="li-mail-left-side"><span className="material-symbols-outlined">
                         send
                     </span>{isOpen && 'Sent'}</li>
-                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter('draft')} className="li-mail-left-side"><span className="material-symbols-outlined">
                         draft
                     </span>{isOpen && 'Draft'}</li>
-                    <li onClick={() => onSetFilter({ ...filterBy, isStared: true })} className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter('isStared')} className="li-mail-left-side"><span className="material-symbols-outlined">
                         star
                     </span>{isOpen && 'Stared'}</li>
-                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter('spam')} className="li-mail-left-side"><span className="material-symbols-outlined">
                         report
                     </span>{isOpen && 'Spam'}</li>
-                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
+                    <li onClick={() => onSetFilter('trash')} className="li-mail-left-side"><span className="material-symbols-outlined">
                         delete
-                    </span>{isOpen && 'Trash'}</li>
-                    <li className="li-mail-left-side"><span className="material-symbols-outlined">
+                    </span>{isOpen && 'trash'}</li>
+                    <li onClick={() => onSetFilter('')} className="li-mail-left-side"><span className="material-symbols-outlined">
                         all_inbox
                     </span>{isOpen && 'All Maill'}</li>
                 </ul>
@@ -116,10 +126,10 @@ export function MailIndex() {
 
             <div className="mail-main-right-area">
                 <ul className='mail-main-right-area-side-menu side-menu'>
-                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-calendar-icon.svg" alt="Submit" /></button></li>
-                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-keep-icon.svg" alt="Submit" /></button></li>
-                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-tasks-icon.png" alt="Submit" /></button></li>
-                    <li className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-contacts-icon.png" alt="Submit" /></button></li>
+                    <li onClick={() => location.href = "https://calendar.google.com/calendar/u/0/r?pli=1"} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-calendar-icon.svg" alt="Submit" /></button></li>
+                    <li onClick={() => location.href = ""} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-keep-icon.svg" alt="Submit" /></button></li>
+                    <li onClick={() => location.href = "https://tasksboard.com/"} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-tasks-icon.png" alt="Submit" /></button></li>
+                    <li onClick={() => location.href = "https://contacts.google.com/"} className='right-google-ul'><button className="btn-mail btn-li-right-mail" type="submit"><img src="../../../assets/img/google-contacts-icon.png" alt="Submit" /></button></li>
                 </ul>
             </div>
 

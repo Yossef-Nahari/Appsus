@@ -8,10 +8,9 @@ const demoEmails = [{
     id: utilService.makeId(),
     subject: 'Tel Aviv white night invitation',
     body: 'Dear Jhon, We would like to invite you to the best night ever!',
+    status: 'inbox',
     isRead: false,
-    isTrash: false,
     isStared: false,
-    isDraft: false,
     sentAt: 1551133930800,
     to: 'Jhon@gmail.com',
     from: 'TelAviv@gmail.com',
@@ -21,10 +20,9 @@ const demoEmails = [{
     id: utilService.makeId(),
     subject: 'Electricity bill',
     body: 'Dear Jhon, attached your monthly electricity bill to pay, please reply.',
+    status: 'inbox',
     isRead: false,
-    isTrash: false,
     isStared: true,
-    isDraft: false,
     sentAt: 1551133930700,
     to: 'Jhon@gmail.com',
     from: 'Electricity-corp@org.com',
@@ -34,10 +32,9 @@ const demoEmails = [{
     id: utilService.makeId(),
     subject: 'Ebay order confirm and receipt',
     body: 'Dear Jhon, your order from Ebay has been successfully received!',
+    status: 'trash',
     isRead: true,
-    isTrash: false,
     isStared: false,
-    isDraft: false,
     sentAt: 1551133930600,
     to: 'Jhon@gmail.com',
     from: 'Ebay@ebay.com',
@@ -47,10 +44,9 @@ const demoEmails = [{
     id: utilService.makeId(),
     subject: 'Sign for newsletter',
     body: 'I would like to get your newsletter for 1 year please. Please call me back',
+    status: 'sent',
     isRead: false,
-    isTrash: false,
     isStared: false,
-    isDraft: false,
     sentAt: 1551133935420,
     to: 'Israel-hayom@gmail.com',
     from: 'Jhon@gmail.com',
@@ -60,13 +56,24 @@ const demoEmails = [{
     id: utilService.makeId(),
     subject: 'soup receipt',
     body: 'Hi dear hellen, how are you? I will love to know the receipt of your great soup...',
+    status: 'draft',
     isRead: false,
-    isTrash: false,
     isStared: false,
-    isDraft: true,
     sentAt: '',
     to: '',
     from: '',
+    labels: ['personal']
+},
+{
+    id: utilService.makeId(),
+    subject: 'Sale for your next vecation',
+    body: 'Hi Jhon, how are you? We have a great offer to show you!!!',
+    status: 'spam',
+    isRead: true,
+    isStared: false,
+    sentAt: '',
+    to: 'Jhon@gmail.com',
+    from: 'el-al@el-al.com',
     labels: ['personal']
 }]
 
@@ -77,17 +84,16 @@ export const mailService = {
     getDefaultFilter
 }
 
-function query(filterBy = getDefaultFilter()) {
+function query(filterBy) {
+    if (filterBy) filterBy = filterBy.criteria
+    if (!filterBy) filterBy = getDefaultFilter()
     return asyncStorageService.query(MAIL_KEY)
         .then(emails => {
+            if (filterBy.status) {
+                emails = emails.filter(email => email.status === filterBy.status)
+            }
             if (filterBy.isStared) {
-                emails = emails.filter(email => email.isStared)
-            }
-            if (filterBy.to) {
-                emails = emails.filter(email => email.to === 'Jhon@gmail.com')
-            }
-            if (filterBy.from) {
-                emails = emails.filter(email => email.from === 'Jhon@gmail.com')
+                emails = emails.filter(email => (email.isStared))
             }
             return emails
         })
@@ -106,5 +112,11 @@ function _createDemoEmails() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', isStared: '' }
+    return {
+        status: 'inbox',
+        txt: '',
+        isRead: '',
+        isStared: '',
+        lables: []
+    }
 }
