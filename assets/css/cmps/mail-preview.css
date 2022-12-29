@@ -7,13 +7,22 @@
 }
 
 .td-email-table {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.258);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.115);
+}
+
+.emails-table-row:hover .raw-gmail-icons {
+    color: rgba(0, 0, 0, 0.977);
 }
 
 .mail-body {
-    color: rgba(0, 0, 0, 0.588);
+    color: rgba(0, 0, 0, 0.374);
 }
 
 .raw-gmail-icons {
-    color: rgba(0, 0, 0, 0.588);
+    color: rgba(0, 0, 0, 0.286);
+}
+
+.emails-table-row:hover {
+    box-shadow: 0 1.5px 0 0 rgba(129, 129, 129, 0.248);
+    cursor: pointer;
 }

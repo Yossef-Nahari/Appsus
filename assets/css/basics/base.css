@@ -22,3 +22,8 @@ img {
     width: 100%;
     object-fit: cover;
 }
+
+button,
+li {
+    cursor: pointer;
+}
