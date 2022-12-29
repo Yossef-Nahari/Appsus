@@ -1,10 +1,9 @@
 .noteList{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(auto, 200px));
-    grid-template-rows: auto;
     grid-auto-flow:  dense;
     gap: 5px;
-    margin: 0 auto;
+    margin: 0 50px;
 }
 
   

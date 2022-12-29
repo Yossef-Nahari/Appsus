@@ -10,6 +10,11 @@ export function AddNote({onSaveNote}) {
     const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
     const [isActive, setIsActive]=useState(false)
     const wrapperRef = useRef(null);
+    const [cmpType, setCmpType] = useState('txt')
+    const [selectedFile, setSelectedFile] = useState(null);
+
+
+    console.log('cmpType:', cmpType)
 
     useOutsideAlerter(wrapperRef)
 
@@ -51,6 +56,42 @@ export function AddNote({onSaveNote}) {
     }
 
 
+    function DynamicCmp(props) {
+        console.log('props:', props)
+        switch (props.cmpType){
+            case 'txt':
+                return <Text/>
+            case 'img':
+                return <LoadImg/>
+        }
+    }
+
+    function Text() {
+        return <textarea name="txt"
+        className="txtBody"
+        placeholder="Take a note..."
+        value={noteToEdit.info.txt}
+        onChange={handleChange}
+    />
+    }
+
+    const handleFileChange = event => {
+        const fileObj = event.target.files && event.target.files[0];
+        if (!fileObj) {
+          return;
+        }
+
+    function LoadImg(){
+        return <input 
+        type="file"
+        value={selectedFile}
+        onChange={handleFileChange}
+
+        />
+        
+    }
+
+
     return <section onClick={()=>{setIsActive(true)}} ref={wrapperRef} className={isActive ? "addNote container flex justify-content space-between align-center writeOpt": "addNote container flex justify-content space-between align-center"}>
         <form className="addNotForm" >
             <input type="text"
@@ -59,13 +100,13 @@ export function AddNote({onSaveNote}) {
                 placeholder="Take a note..." 
                 value={noteToEdit.info.title}
                     onChange={handleChange}/>
-
-            <textarea name="txt"
+            <DynamicCmp cmpType={cmpType} /> 
+            {/* <textarea name="txt"
                 className="txtBody"
                 placeholder="Take a note..."
                 value={noteToEdit.info.txt}
                 onChange={handleChange}
-            />
+            /> */}
     {/* <button>{noteToEdit.id ? 'Save' : 'Add'}</button> */}
 
         </form>
@@ -94,7 +135,8 @@ export function AddNote({onSaveNote}) {
                 <span className="material-symbols-outlined">
                     palette
                 </span>
-                <span className="material-symbols-outlined">
+                <span className="material-symbols-outlined"
+                onClick={ev => setCmpType("img")}>
                     image
                 </span>
                 <span className="material-symbols-outlined">

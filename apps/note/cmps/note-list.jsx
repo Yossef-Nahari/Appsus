@@ -12,7 +12,6 @@ export function NoteList({notes, onRemoveNote}) {
             <div className="notePresent">
                 <NotePreview note={note} />
                 <div className="optBtnNote">
-                    {/* <div className="bottomAddNoteLine flex  space-between align-center"> */}
                         <div className="edidNoteBtn flex justify-content align-center">
                             <span className="material-symbols-outlined">
                                 add_alert
@@ -33,12 +32,12 @@ export function NoteList({notes, onRemoveNote}) {
                                 more_vert
                             </span>
                         </div>
-                    {/* <button onClick={() => onRemoveNote(note.id)}>Remove</button> */}
-                    {/* <Link to={`/note/${note.id}`}> Edit</Link> */}
                 </div>
             </div>
         </li>)
     }
 </ul>
-
 }
+
+
+

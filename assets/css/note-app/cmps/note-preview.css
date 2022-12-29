@@ -1,18 +1,15 @@
 .noteList li{
     border: black solid 1px;
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
     border-radius: var(--size-s);
-    align-content: center;
-    justify-content: space-between;
-    /* height: 100%; */
+
 }
 
 .notePresent{
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    /* height: 100%; */
+    height: 100%;
     justify-content: space-between;
 }
 
