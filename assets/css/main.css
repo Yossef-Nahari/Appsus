@@ -40,8 +40,9 @@
 /* Cmps */
 @import '../css/note-app/cmps/note-Page.css';
 @import '../css//note-app/cmps/google-header.css';
+@import '../css//note-app/cmps/add-note.css';
 @import '../css/note-app/cmps/noteFilter.css';
-@import '../css/note-app/cmps/note-edit.css';
+/* @import '../css/note-app/cmps/note-edit.css'; */
 @import '../css/note-app/cmps/note-preview.css';
 @import '../css/note-app/cmps/note-list.css';
 
