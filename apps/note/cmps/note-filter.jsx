@@ -28,7 +28,7 @@ export  function NoteFilter({onSetFilter}) {
         onSetFilter(filterByToEdit.txt='')
     }
 
-    return <section className="header">
+    return <section className="header full">
         
         <div className="filter">
             <form onSubmit={onSubmitFilter}>

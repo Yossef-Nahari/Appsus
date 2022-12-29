@@ -6,6 +6,7 @@ import { noteService } from "../services/note.service.js"
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 
 import { GoogleHeader } from "../cmps/google-header.jsx"
+import { AddNote } from "../cmps/add-note.jsx"
 import { NoteList } from "../cmps/note-list.jsx"
 
 
@@ -52,22 +53,37 @@ export function NoteIndex() {
             })
     }
 
+    function onSaveNote(newNote, noteId='') {
+        if (newNote.info.txt ==="" && newNote.info.title ==="" ) return
+        console.log('newNote:', newNote)
+        noteService.save(newNote).then((note) => {
+            setNotes(prevNots=> [...prevNots, note])
+        })
+    }
+
 
 
     return <section className="note-index">
             <GoogleHeader onSetFilter={onSetFilter}/>
-        
+
+            <main className=".main-layout">
+
+                <AddNote onSaveNote={onSaveNote}/>
+
+            
 
 
-            {/* <Link to="/note/">Add Note</Link> */}
+                {/* <Link to="/note/">Add Note</Link> */}
 
-            {isLoading && <div>Loading..</div>}
+                {isLoading && <div>Loading..</div>}
 
-            {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+                {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
 
-            <div className="nested-route">
-                <Outlet />
-            </div>
+                <div className="nested-route">
+                    <Outlet />
+                </div>
+
+            </main>
     </section>
 
 }
