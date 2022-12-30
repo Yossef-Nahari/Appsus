@@ -50,7 +50,7 @@ function save(note) {
 }
 
 
-function getEmptyNote(type='', isPinnd=true, info={txt: '', title: ''}, style={bgc:'', font:'', fontSize:''}) {
+function getEmptyNote(type='', isPinnd=true, info={txt: '', title: '', bgc:"#fffff"}, style={bgc:'', font:'', fontSize:''}) {
     return { type, isPinnd,info, style}
 }
 
