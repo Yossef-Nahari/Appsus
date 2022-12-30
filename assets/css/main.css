@@ -38,5 +38,6 @@
 @import '../css//note-app/cmps/add-note.css';
 @import '../css/note-app/cmps/noteFilter.css';
 @import '../css/note-app/cmps/note-edit.css';
-@import '../css/note-app/cmps/note-preview.css';
 @import '../css/note-app/cmps/note-list.css';
+@import '../css/note-app/cmps/note-preview.css';
+@import '../css/note-app/cmps/dropDownMenu.css';

@@ -18,6 +18,8 @@
     width: 200px;
     padding: 0.75em 1em;
     box-sizing: border-box;
+    overflow-wrap: break-word;
+
 }
 
 .txtTitle{

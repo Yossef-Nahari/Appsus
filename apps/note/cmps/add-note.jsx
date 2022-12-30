@@ -1,4 +1,4 @@
-const { useState, useEffect, useRef, useCallback} = React
+const { useState, useEffect, useRef} = React
 
 import { noteService } from "../services/note.service.js"
 import { eventBusService, showSuccessMsg } from "../services/event-bus.service.js"
@@ -67,16 +67,6 @@ export function AddNote({onSaveNote}) {
 
 
 
-
-    function DynamicCmp(props) {
-        switch (props.cmpType){
-            case 'txt':
-                return <Text/>
-            case 'img':
-                return <LoadImg/>
-        }
-    }
-
     function Text() {
         return <textarea name="txt"
         className="txtBody"
@@ -88,24 +78,20 @@ export function AddNote({onSaveNote}) {
     
 
     return <section onClick={()=>{setIsActive(true)}} ref={wrapperRef}  className={isActive ? "addNote container flex justify-content space-between align-center writeOpt": "addNote container flex justify-content space-between align-center"}>
-        <form className="addNotForm" >
+        <form className="addNoteForm" >
             <input type="text"
                 className="addText"
                 name="title"
                 placeholder="Take a note..." 
                 value={noteToEdit.info.title}
                     onChange={handleChange}/>
-            <div className="changeInput">
-                 {/* <DynamicCmp cmpType={cmpType} /> */}
-            <textarea name="txt"
+            {isActive && <textarea name="txt"
                 className="txtBody"
                 placeholder="Take a note..."
                 value={noteToEdit.info.txt}
                 onChange={handleChange}
                 />
-                </div>
-    {/* <button>{noteToEdit.id ? 'Save' : 'Add'}</button> */}
-               
+            }   
         </form>
 
         <div className="addNoteBtn flex justify-content align-center">

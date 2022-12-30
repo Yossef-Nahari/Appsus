@@ -12,6 +12,7 @@ export const noteService = {
     save,
     getEmptyNote,
     getDefaultFilter,
+    changeStyle
 
 }
 
@@ -56,6 +57,20 @@ function getEmptyNote(type = '', isPinnd = true, info = { txt: '', title: '' }, 
 
 function getDefaultFilter() {
     return { txt: '' }
+}
+
+function changeStyle(noteId, field,style){
+    return get(noteId).then((note)=>showmy(note))
+
+  function showmy(note){
+    note.style[field]=style
+    const editStyle=note
+    return save(editStyle)
+  }
+  
+  
+        
+    
 }
 
 function _createNotes() {

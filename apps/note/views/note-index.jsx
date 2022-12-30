@@ -57,6 +57,18 @@ export function NoteIndex() {
         })
     }
 
+    function onChangeStyle(style, field ,noteId=''){
+       const show=noteService.changeStyle(noteId, field,style)
+      show.then((note)=>{ 
+        if (noteId) {
+        const updatednotes = notes.filter(note => note.id !== noteId)
+        setNotes([...updatednotes, note])
+         } else { setNotes(prevNots => [...prevNots, note]) }
+
+      })
+        
+    }
+
 
 
     return <section className="note-index">
@@ -65,7 +77,7 @@ export function NoteIndex() {
         <main className=".main-layout">
             <AddNote onSaveNote={onSaveNote} />
             {isLoading && <div>Loading..</div>}
-            {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} />}
+            {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeStyle={onChangeStyle} />}
             <div className="nested-route">
                 <Outlet context={onSaveNote} />
             </div>

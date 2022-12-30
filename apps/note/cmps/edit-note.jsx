@@ -81,7 +81,7 @@ export function NoteEdit() {
             ref={wrapperRef}
         // onClick={()=>{setIsActive(true)}}
         >
-            <form className="addNotForm" onSubmit={toSaveNote}
+            <form className="addNoteForm" onSubmit={toSaveNote}
             >
                 <input type="text"
                     className="addText"

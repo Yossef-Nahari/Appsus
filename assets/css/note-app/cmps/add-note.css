@@ -8,24 +8,42 @@
     border-radius: 1em;
     margin: 2em auto;
     background-color: #fff;
+    box-shadow: 0 1px 7px rgb(128, 128, 128);
+    border-radius: 7px;
 }
 
 textarea:focus, input:focus{
     outline: none;
 }
 
-.addNotForm {
+.addNoteForm {
     box-sizing: border-box;
     border: none;
     height: fit-content;
     display: flex; 
     flex-direction: column;  
-    width: inherit;
+    justify-content: center;
+    width: 97%;
+}
+input.addText{
+    font-size: 13px;
+    width: 95%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 10px;
 
 }
-.addNotForm input{
-    font-size: 13px;
+
+.addNote form textarea{
+    min-height: 5px;
+    resize: none;
+    width: inherit;
     border: 0;
+    font-size: 1rem;
+    outline: none;
+    padding: 4px 10px;
+    width:95%;
 
 }
 
@@ -49,12 +67,6 @@ textarea:focus, input:focus{
     min-height: 100px ;
 }
 
-.addNote.writeOpt form textarea{
-    resize: none;
-    width: inherit;
-    border: 0;
-    padding-top: 1em;  
-}
 
 
 .addNote textarea, .addNote .bottomAddNoteLine, .attachPin{

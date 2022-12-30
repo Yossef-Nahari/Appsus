@@ -1,32 +1,17 @@
-.addNote form {
-  position: relative;
-  width: 600px;
-  margin: 32px auto 50px auto;
-  background: #fff;
-  padding: 7px;
-  border-radius: 7px;
-  box-shadow: 0 1px 7px rgb(128, 128, 128);
+.addNote  {
+  /* position: relative; */
+  /* width: 600px; */
+  /* margin: 32px auto 50px auto; */
+  /* background: #fff; */
+  /* padding: auto; */
 }
 
-.addNote form input {
-  width: 95%;
-  border: none;
-  padding: 4px 10px;
-  margin-bottom: 20px;
-  outline: none;
-  font-size: 1rem;
-  resize: none;
+.mainEditNote{
+
 }
 
-.addNote form textarea{
-    width:95%;
-    border: none;
-    padding: 4px 10px;
-    outline: none;
-    font-size: 1rem;
-    resize: none;
-    height: 150px;
-  }
+
+
 
 
 
