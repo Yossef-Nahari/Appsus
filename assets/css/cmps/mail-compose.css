@@ -1,0 +1,62 @@
+.mail-compose {
+    display: grid;
+    grid-template-rows: 1fr 10fr;
+    position: fixed;
+    bottom: 0;
+    right: 60px;
+    border-radius: 10px;
+    box-shadow: 3px 0px 10px 4px rgba(129, 129, 129, 0.319);
+    height: 47vh;
+    width: 45vw;
+}
+
+.compose-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #f6f8fc;
+}
+
+.x-button {
+    border: none;
+    width: 10%;
+    background: none;
+    font-weight: 600;
+    font-size: 1em;
+    justify-self: right;
+    padding-right: 20px;
+}
+
+.compose-heading {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto 0;
+    font-size: 0.85em;
+    padding-left: 10px;
+    font-weight: 100;
+}
+
+.mail-new-form {
+    display: grid;
+    grid-template-rows: 1fr 1fr 9fr 2fr;
+    height: 100%;
+}
+
+input.form-input {
+    border: none;
+    border-width: none;
+    border-bottom: 0.2px solid rgb(239, 233, 233);
+    padding-left: 10px;
+    font-size: 0.85em;
+    text-align: start;
+}
+
+.btn-send {
+    width: 25%;
+    height: 55%;
+    margin: auto 0;
+    margin-left: 15px;
+    border-radius: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    background-color: #0b57d0;
+    color: #ffffff;
+    font-size: 0.9em;
+}

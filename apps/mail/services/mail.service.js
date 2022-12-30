@@ -11,7 +11,7 @@ const demoEmails = [{
     status: 'inbox',
     isRead: false,
     isStared: false,
-    sentAt: 1551133930800,
+    recievedAt: getDateTime('155113445200'),
     to: 'Jhon@gmail.com',
     from: 'TelAviv@gmail.com',
     labels: ['personal']
@@ -23,7 +23,7 @@ const demoEmails = [{
     status: 'inbox',
     isRead: false,
     isStared: true,
-    sentAt: 1551133930700,
+    recievedAt: getDateTime('1551133930700'),
     to: 'Jhon@gmail.com',
     from: 'Electricity-corp@org.com',
     labels: ['important', 'personal']
@@ -35,7 +35,7 @@ const demoEmails = [{
     status: 'trash',
     isRead: true,
     isStared: false,
-    sentAt: 1551133930600,
+    recievedAt: getDateTime('1551133930600'),
     to: 'Jhon@gmail.com',
     from: 'Ebay@ebay.com',
     labels: ['personal']
@@ -47,7 +47,7 @@ const demoEmails = [{
     status: 'sent',
     isRead: false,
     isStared: false,
-    sentAt: 1551133935420,
+    sentAt: getDateTime('1551133935420'),
     to: 'Israel-hayom@gmail.com',
     from: 'Jhon@gmail.com',
     labels: ['work']
@@ -71,7 +71,7 @@ const demoEmails = [{
     status: 'spam',
     isRead: true,
     isStared: false,
-    sentAt: '',
+    recievedAt: getDateTime('1551133945020'),
     to: 'Jhon@gmail.com',
     from: 'el-al@el-al.com',
     labels: ['personal']
@@ -81,7 +81,10 @@ _createEmails()
 
 export const mailService = {
     query,
-    getDefaultFilter
+    getDefaultFilter,
+    getEmptyToSendMail,
+    sent,
+    save
 }
 
 function query(filterBy) {
@@ -89,11 +92,19 @@ function query(filterBy) {
     if (!filterBy) filterBy = getDefaultFilter()
     return asyncStorageService.query(MAIL_KEY)
         .then(emails => {
+            console.log('emails', emails)
+            console.log('filterBy', filterBy)
             if (filterBy.status) {
                 emails = emails.filter(email => email.status === filterBy.status)
             }
             if (filterBy.isStared) {
-                emails = emails.filter(email => (email.isStared))
+                emails = emails.filter(email => email.isStared)
+            }
+            if (filterBy.txt) {
+                const lowerCaseFilter = filterBy.txt.toLowerCase()
+                emails = emails.filter((email) => {
+                    return email.subject.toLowerCase().includes(lowerCaseFilter) || email.body.toLowerCase().includes(lowerCaseFilter)
+                })
             }
             return emails
         })
@@ -119,4 +130,44 @@ function getDefaultFilter() {
         isStared: '',
         lables: []
     }
+}
+
+function getEmptyToSendMail() {
+    return {
+        id: '',
+        subject: '',
+        body: '',
+        status: 'sent',
+        isRead: false,
+        isStared: false,
+        sentAt: '',
+        to: '',
+        from: 'Jhon@gmail.com',
+        labels: ['personal']
+    }
+}
+
+function sent(mail, isDraft = false) {
+    if (!isDraft) mail.sentAt = getDateTime()
+    if (mail.id) {
+        return asyncStorageService.put(MAIL_KEY, mail)
+    } else {
+        return asyncStorageService.post(MAIL_KEY, mail)
+    }
+}
+
+function save(mail) {
+    if (mail.id) {
+        return asyncStorageService.put(MAIL_KEY, mail)
+    } else {
+        return asyncStorageService.post(MAIL_KEY, mail)
+    }
+}
+
+function getDateTime(date = new Date()) {
+    if (typeof date === 'string') date = new Date(+date)
+    const currentDate = `${date.getDate()}-${(date.getMonth() + 1)}-${date.getFullYear()}`
+    const currentTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    return `${currentTime} ${currentDate}`
+
 }
