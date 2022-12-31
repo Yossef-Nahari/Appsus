@@ -27,6 +27,7 @@
 .menu-btn {
     text-align: end;
     margin-right: 19px;
+    grid-area: menu-btn;
 }
 
 .img-gmail {
@@ -58,6 +59,7 @@
     border-radius: 5px;
     font-size: 1em;
     padding-left: 20px;
+    grid-area: mail-search-box;
 }
 
 .mail-header-right-area {
@@ -128,8 +130,41 @@
     height: 28px;
     width: 28px;
     margin: auto 0;
+    grid-area: mail-img;
 }
 
 .right-google-ul:hover {
     background-color: rgba(0, 0, 0, 0.197);
+}
+
+@media (max-width:600px) {
+    .mail-index {
+        display: grid;
+        grid-template-rows: 1fr 15fr;
+        height: 90vh;
+    }
+
+    .mail-header {
+        display: grid;
+        grid-template-areas:
+            "menu-btn mail-search-box mail-img";
+        grid-template-columns: 1fr 8fr 1fr;
+    }
+
+    .mail-main {
+        display: grid;
+        grid-template-areas:
+            "mail-main-center-area";
+        grid-template-columns: 1fr;
+    }
+
+    .btn-mail:not(.menu-btn),
+    .gmail-caption,
+    .mail-main-action-nav,
+    .mail-main-left-area,
+    .mail-main-right-area {
+        display: none;
+    }
+
+
 }
