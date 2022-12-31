@@ -48,7 +48,7 @@ export function NoteIndex() {
     }
 
     function onSaveNote(newNote, justCreated = true) {
-        if (newNote.info.txt === "" && newNote.info.title === "" && justCreated) return
+        if (newNote.info.txt === "" && newNote.info.title === "" && justCreated && newNote.info.src==="") return
         noteService.save(newNote).then((note) => {
             if (newNote.id) {
                 const updatednotes = notes.filter(note => note.id !== newNote.id)
@@ -58,7 +58,7 @@ export function NoteIndex() {
     }
 
     function onChangeStyle(style, field ,noteId=''){
-       const show=noteService.changeStyle(noteId, field,style)
+        const show=noteService.changeStyle(noteId, field,style)
       show.then((note)=>{ 
         if (noteId) {
         const updatednotes = notes.filter(note => note.id !== noteId)
@@ -70,6 +70,9 @@ export function NoteIndex() {
     }
 
 
+   
+
+
 
     return <section className="note-index">
         <GoogleHeader onSetFilter={onSetFilter} />
@@ -77,9 +80,10 @@ export function NoteIndex() {
         <main className=".main-layout">
             <AddNote onSaveNote={onSaveNote} />
             {isLoading && <div>Loading..</div>}
-            {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeStyle={onChangeStyle} />}
+            {!isLoading && <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeStyle={onChangeStyle} 
+            onSaveNote={onSaveNote} />}
             <div className="nested-route">
-                <Outlet context={onSaveNote} />
+                <Outlet context={{onSaveNote, onRemoveNote}} />
             </div>
 
         </main>

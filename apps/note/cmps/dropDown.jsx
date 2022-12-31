@@ -35,10 +35,9 @@ export function Dropdown({onChangeStyle, noteId}){
         
         }, [ref]);
       }
-
-
-
+      
       function setImportceColor(color, name){
+        event.preventDefault()
         onChangeStyle(color, name, noteId)
         
 
