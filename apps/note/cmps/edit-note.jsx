@@ -2,7 +2,8 @@ const { useState, useEffect, useRef } = React
 const { useNavigate, useParams, useOutletContext } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
-import { eventBusService, showSuccessMsg } from "../services/event-bus.service.js"
+
+import { AddImg } from "./add-img.jsx"
 
 export function NoteEdit() {
     const [noteToEdit, setnoteToEdit] = useState(noteService.getEmptyNote())
@@ -10,7 +11,7 @@ export function NoteEdit() {
 
     const navigate = useNavigate()
     const { noteId } = useParams()
-    const onSaveNote = useOutletContext()
+    const {onSaveNote, onRemoveNote} = useOutletContext()
     const wrapperRef = useRef(null);
 
     useOutsideAlerter(wrapperRef)
@@ -76,13 +77,35 @@ export function NoteEdit() {
         navigate('/note')
     }
 
+
+    function showImg(file) {
+        setnoteToEdit((prevNote) => (
+            { ...prevNote, ...prevNote.info.src = file },
+            { ...prevNote, ...prevNote.info.lastUpdate = Date.now() }
+        ))
+        
+    }
+
+
+    function toRemoveNote() {
+        onRemoveNote(noteId)
+        navigate('/note')
+    }
+
+
+
     return <section className="mainEditNote">
         <div className="note-edit addNote flex column justify-center align-center writeOpt"
             ref={wrapperRef}
         // onClick={()=>{setIsActive(true)}}
         >
             <form className="addNoteForm" onSubmit={toSaveNote}
+
             >
+                 {noteToEdit.info.src && <img className="noteImg"
+                    src= {noteToEdit.info.src}
+                    alt="img"
+                    />}
                 <input type="text"
                     className="addText"
                     name="title"
@@ -99,30 +122,13 @@ export function NoteEdit() {
 
                 <div className="bottomAddNoteLine flex  space-between align-center">
                     <div className="edidNoteBtn flex edidNoteBtn-content align-center space-between" >
-                        <span className="material-symbols-outlined">
-                            add_alert
-                        </span>
-                        <span className="material-symbols-outlined">
-                            person_add
-                        </span>
-                        <span className="material-symbols-outlined">
-                            palette
-                        </span>
-                        <span className="material-symbols-outlined">
-                            image
-                        </span>
-                        <span className="material-symbols-outlined">
-                            archive
-                        </span>
-                        <span className="material-symbols-outlined">
-                            more_vert
-                        </span>
-                        <span className="material-symbols-outlined">
-                            undo
-                        </span>
-                        <span className="material-symbols-outlined">
-                            redo
-                        </span>
+                       
+                        <AddImg showImg={showImg}/>
+
+                        <span onClick={toRemoveNote} className="material-symbols-outlined">
+                                delete
+                            </span>
+                    
                     </div>
 
 
@@ -131,33 +137,6 @@ export function NoteEdit() {
                     </button>
                 </div>
 
-
-                {/* <form  className="addNote" onSubmit={onSaveNote}>
-                <input type="text"
-                    name="title"
-                    className="txtTitle active"
-                    placeholder="Title"
-                    value={noteToEdit.info.title}
-                    onChange={handleChange}
-                />
-                <textarea name="txt"
-                    className="txtBody active"
-                    placeholder="Take a note..."
-                    value={noteToEdit.info.txt}
-                    onChange={handleChange}
-                /> */}
-
-                {/* <input type="text"
-                    name="txt"
-                    className="txtBody"
-                    placeholder="Enter note txt"
-                    value={noteToEdit.info.txt}
-                    onChange={handleChange}
-                /> */}
-                {/* <div className="optBtnNote active">
-            <button>{noteToEdit.id ? 'Save' : 'Add'}</button>
-            <Link to="/note">Cancel</Link>
-        </div> */}
             </form>
         </div>
     </section>

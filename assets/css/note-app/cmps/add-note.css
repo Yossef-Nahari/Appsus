@@ -1,13 +1,11 @@
 .addNote{
-    width:34.75em ;
-    height: 1.375em;
+    min-height: 1.375em;
     min-width:19.375em;
-    width:34.75em ;
+    max-width:34.75em ;
     padding: 0.75em 1em;
     box-shadow: 0 0 2px 0px;
     border-radius: 1em;
     margin: 2em auto;
-    background-color: #fff;
     box-shadow: 0 1px 7px rgb(128, 128, 128);
     border-radius: 7px;
 }
@@ -25,6 +23,23 @@ textarea:focus, input:focus{
     justify-content: center;
     width: 97%;
 }
+
+
+
+.noteImg{
+    display: flex;
+    height: fit-content;
+    background-color: transparent;
+
+}
+
+.btn{
+    background-color:rgba(245, 222, 179, 0);
+    border: 0;
+    color: gray;
+}
+
+
 input.addText{
     font-size: 13px;
     width: 95%;
@@ -32,8 +47,10 @@ input.addText{
     outline: none;
     font-size: 1rem;
     padding: 0 10px;
+    background-color: transparent;
 
 }
+
 
 .addNote form textarea{
     min-height: 5px;
@@ -44,6 +61,8 @@ input.addText{
     outline: none;
     padding: 4px 10px;
     width:95%;
+    background-color: transparent;
+
 
 }
 
@@ -79,7 +98,7 @@ input.addText{
 .addNote.writeOpt .bottomAddNoteLine{
     display: flex;
     justify-content: space-between;
-    width: inherit;
+    width: 97%;
     flex-wrap: wrap;
 }
 
@@ -92,6 +111,13 @@ input.addText{
     color: rgb(40, 38, 38);
     font-weight: 550;
 
+}
+
+@media (max-width: 650px){
+    .addNote{
+        min-width: 280px ;
+        margin: 2em 2em;
+    }
 }
 
 

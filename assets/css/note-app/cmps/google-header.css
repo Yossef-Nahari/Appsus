@@ -46,7 +46,7 @@
 
 /* NAVBAR STYLES */
 
-nav {
+.googleHeader nav {
     display: flex;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap:5px;
@@ -107,7 +107,7 @@ nav {
     background: #f1f3f4;
     height: 95%;
     width: 82%;
-    min-width: 200px;
+    min-width: 100px;
     font-size: 1rem;
     margin-left: 10px;
     border-radius: 2em;
@@ -136,4 +136,36 @@ input:focus {
 .profile{
 
     font-size: var(--size-m);
+}
+
+
+@media (max-width: 650px){
+    nav  {
+        /* background-color: red; */
+        /* justify-content: space-between; */
+    }
+
+    .log-area{
+       margin: 0;
+    }
+
+    .search-area >:not(.tooltip) {
+        min-width: 50px;
+    }
+
+    .search-area {
+        width: fit-content;
+    }
+
+    .tooltip{
+        padding: 0;
+    }
+    
+}
+
+@media (max-width: 580px){
+    .search-area >:not(.tooltip) {
+        display: none;
+    }
+
 }
