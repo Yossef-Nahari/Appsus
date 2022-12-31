@@ -3,7 +3,9 @@ const { useState, useEffect } = React
 import { mailService } from '../services/mail.service.js'
 import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
-export function EmailCompose({ SetIsNewEmail, loadEmails }) {
+export function EmailCompose({ SetIsNewEmail, loadEmails, mailToOpen, isReply }) {
+
+    console.log(mailToOpen)
 
     const [mailToSend, setMailToSend] = useState(mailService.getEmptyToSendMail())
 
@@ -39,20 +41,19 @@ export function EmailCompose({ SetIsNewEmail, loadEmails }) {
                     name="to"
                     id="to"
                     placeholder="Recipients"
-                    // value={bookToEdit.title}
+                    value={isReply ? mailToOpen.from : ''}
                     onChange={handleChange}
                 />
                 <input className="form-input" type="text"
                     name="subject"
                     id="subject"
                     placeholder="subject"
-                    // value={bookToEdit.subtitle}
+                    value={isReply ? mailToOpen.subject : ''}
                     onChange={handleChange}
                 />
                 <input className="form-input" type="text"
                     name="body"
                     id="body"
-                    // value={bookToEdit.authors}
                     onChange={handleChange}
                 />
                 <button className='btn-send'>Send</button>

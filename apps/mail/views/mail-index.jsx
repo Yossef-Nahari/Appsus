@@ -17,6 +17,7 @@ export function MailIndex() {
     const [isNewEmail, setIsNewEmail] = useState(false)
     const [isEmailOpen, setIsEmailOpen] = useState(false)
     const [mailToOpen, setMailToOpen] = useState('')
+    const [isReply, setIsReply] = useState(false)
 
     useEffect(() => {
         console.log('render')
@@ -107,7 +108,7 @@ export function MailIndex() {
         <div className="mail-main full main-layout">
 
             <div className="mail-main-left-area">
-                <button onClick={() => setIsNewEmail(true)} className="btn-mail btn-edit-google" title='New email'><span className="material-symbols-outlined">
+                <button onClick={() => { setIsNewEmail(true), setIsReply(false) }} className="btn-mail btn-edit-google" title='New email'><span className="material-symbols-outlined">
                     edit
                 </span></button>
                 <ul className='mail-main-left-area-side-menu side-menu'>
@@ -143,7 +144,7 @@ export function MailIndex() {
 
                 <div className="mail-main-emails-table">
                     {!isLoading && !isEmailOpen && <EmailList emails={emails} setIsEmailOpen={setIsEmailOpen} setMailToOpen={setMailToOpen} loadEmails={loadEmails} />}
-                    {isEmailOpen && <EmailOpen mailToOpen={mailToOpen} />}
+                    {isEmailOpen && <EmailOpen mailToOpen={mailToOpen} loadEmails={loadEmails} setIsEmailOpen={setIsEmailOpen} onSetFilter={onSetFilter} setIsNewEmail={setIsNewEmail} setIsReply={setIsReply} />}
                     {isLoading && <div>Loading..</div>}
                     {!emails.length && <div>No emails to show..</div>}
                 </div>
@@ -159,7 +160,7 @@ export function MailIndex() {
                 </ul>
             </div>
 
-            {isNewEmail && <EmailCompose SetIsNewEmail={setIsNewEmail} loadEmails={loadEmails} />}
+            {isNewEmail && <EmailCompose SetIsNewEmail={setIsNewEmail} loadEmails={loadEmails} mailToOpen={mailToOpen} isReply={isReply} />}
 
         </div>
 
