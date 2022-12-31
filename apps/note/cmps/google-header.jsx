@@ -1,4 +1,5 @@
 const { useState, useEffect, useRef } = React
+const { Link } = ReactRouterDOM
 
 import { noteService } from "../services/note.service.js"
 
@@ -32,8 +33,11 @@ export function GoogleHeader({onSetFilter}) {
         <nav>
             <div className="log-area">
                 <div className="tooltip">
+                    <Link to="/">
                     <span className="material-symbols-outlined menuBar">menu</span> 
+                    </Link>
                     <span className="tooltip-text">Main Menu</span>
+                        
                 </div>
                     <img
                         className="gb_uc gb_7d"
