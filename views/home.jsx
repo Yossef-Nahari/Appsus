@@ -6,12 +6,12 @@ export function Home() {
          <div className="mainPage">
                 <div className='AppMainLinkPage'>
 
-                    <Link className="linkToApp mail" to="/mail">
+                    {/* <Link className="linkToApp mail" to="/mail">
                     <img src="./assets/img/Email-PNG-High-Quality-Image.png"/>
                     </Link>
                     <Link className="linkToApp note" to="/note">
                         <img src="./assets/img/Google_Keep_icon_(2020).png"/>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
        
