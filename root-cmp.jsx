@@ -13,7 +13,7 @@ import { UserMsg } from './cmps/user-msg.jsx'
 export function App() {
     return <Router>
         <section className="app">
-            {/* <AppHeader /> */}
+            <AppHeader />
             {/* <main> */}
             <Routes>
                 <Route path="/" element={<Home />} />
