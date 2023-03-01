@@ -4,7 +4,7 @@ Clone app of google apps: Gmail and Keep (note)
 
 You more the welcome to visit our website : 
 
-<a href="https://yossef-nahari.github.io/Appsus/"> Appsus<a>
+<a href="https://yossef-nahari.github.io/Appsus/#/mail"> Appsus<a>
 
 The gmail clone was done my Yossef:
 
